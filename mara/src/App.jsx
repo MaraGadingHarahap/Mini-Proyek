@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
 function GlobalStyles() {
   return (
     <style>{`
-      /* Reset dasar & Font */
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        background-color: #f4f7f6; /* Warna latar belakang netral */
+        background-color: #f4f7f6;
         margin: 0;
         color: #333;
       }
@@ -21,7 +19,7 @@ function GlobalStyles() {
 
       /* Styling Navigasi */
       .app-nav {
-        background-color: #880bcbff; /* Biru tua yang profesional */
+        background-color: #880bcbff;
         padding: 1rem;
         box-shadow: 0 4px 10px -3px rgba(0, 0, 0, 0.1);
       }
@@ -51,7 +49,7 @@ function GlobalStyles() {
       }
       
       .nav-button.active {
-        background-color: #000000ff; /* Biru lebih tua */
+        background-color: #000000ff;
         color: white;
       }
       
@@ -65,11 +63,10 @@ function GlobalStyles() {
         background-color: #f0f6ff;
       }
       
-      /* .user-id-display tidak lagi diperlukan */
       
       /* Konten Halaman Utama */
       .app-main {
-        max-width: 60rem; /* max-w-5xl */
+        max-width: 60rem;               
         margin: 1.5rem auto;
         padding: 0 1.5rem;
         display: grid;
@@ -80,19 +77,19 @@ function GlobalStyles() {
       /* Responsif untuk layar lebih besar */
       @media (min-width: 768px) {
         .app-main {
-          grid-template-columns: 1fr 2fr; /* 1/3 untuk form, 2/3 untuk daftar */
+          grid-template-columns: 1fr 2fr;
         }
       }
 
       .page-card {
         padding: 1.5rem;
         background-color: white;
-        border-radius: 0.75rem; /* Lebih bulat */
+        border-radius: 0.75rem;
         box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.07);
       }
       
       .page-title {
-        font-size: 1.5rem; /* text-2xl */
+        font-size: 1.5rem;
         font-weight: 700;
         margin-top: 0;
         margin-bottom: 1.5rem;
@@ -109,7 +106,6 @@ function GlobalStyles() {
       
       /* Styling Form */
       .form-card {
-        /* Styles sudah ada di .page-card */
       }
       
       .form-group {
@@ -154,10 +150,6 @@ function GlobalStyles() {
         background-color: #003d6b;
       }
 
-      /* Styling Daftar Mahasiswa */
-      .list-card {
-        /* Styles sudah ada di .page-card */
-      }
       
       .list-ul {
         list-style: none;
@@ -214,7 +206,6 @@ function GlobalStyles() {
 }
 
 // --- Komponen: Form Tambah Mahasiswa ---
-// Props diubah: menerima setMahasiswaList untuk memperbarui state di parent
 function FormTambahMahasiswa({ setMahasiswaList }) {
   // 1. State untuk mengelola input form
   const [nama, setNama] = useState('');
@@ -232,7 +223,7 @@ function FormTambahMahasiswa({ setMahasiswaList }) {
     };
 
     // 2. Perbarui state parent (App)
-    // Kita gunakan fungsi updater agar selalu mendapat list terbaru
+    //gunakan fungsi updater agar selalu mendapat list terbaru
     setMahasiswaList(prevList => [...prevList, mahasiswaBaru]);
       
     // 3. Reset form setelah sukses
@@ -277,7 +268,6 @@ function FormTambahMahasiswa({ setMahasiswaList }) {
 }
 
 // --- Komponen: Daftar Mahasiswa ---
-// Props diubah: menerima mahasiswaList dan setMahasiswaList
 function DaftarMahasiswa({ mahasiswaList, setMahasiswaList }) {
 
   const handleDelete = (id) => {
@@ -313,10 +303,7 @@ function DaftarMahasiswa({ mahasiswaList, setMahasiswaList }) {
 }
 
 // --- Halaman: Mahasiswa (Halaman Utama) ---
-// Props diubah: Menerima state dan setter-nya dari App
 function MahasiswaPage({ mahasiswaList, setMahasiswaList }) {
-  // Semua state (list, loading) dan useEffect data fetching
-  // dipindahkan ke komponen App
   
   return (
     <>
@@ -327,10 +314,9 @@ function MahasiswaPage({ mahasiswaList, setMahasiswaList }) {
 }
 
 // --- Halaman: Tentang ---
-// Halaman statis sederhana untuk demo routing
 function TentangPage() {
   return (
-    <div className="page-card" style={{ gridColumn: '1 / -1' }}> {/* Span full width */}
+    <div className="page-card" style={{ gridColumn: '1 / -1' }}>
       <h2 className="page-title">Tentang Aplikasi Ini</h2>
       <p>Aplikasi ini adalah demo React yang dibuat untuk tugas Mini Proyek kami.</p>
       <p>Fitur yang didemonstrasikan:</p>
@@ -351,7 +337,6 @@ function App() {
   const [page, setPage] = useState('mahasiswa'); // 'mahasiswa' or 'tentang'
   
   // State utama untuk daftar mahasiswa, diangkat ke komponen App
-  // Kita coba ambil data awal dari localStorage
   const [mahasiswaList, setMahasiswaList] = useState(() => {
     try {
       const dataTersimpan = localStorage.getItem('daftarMahasiswa');
@@ -372,11 +357,7 @@ function App() {
     }
   }, [mahasiswaList]); // Dependensi: array mahasiswaList
 
-  // Tidak ada lagi state firebaseApp atau useEffect untuk inisialisasi
-
-  const renderPage = () => {
-    // Tidak ada lagi loading atau error state dari Firebase
-    
+  const renderPage = () => {e    
     // Kirim props (mahasiswaList, setMahasiswaList) ke halaman
     switch (page) {
       case 'mahasiswa':
@@ -409,7 +390,6 @@ function App() {
               Tentang
             </button>
           </div>
-          {/* Tidak ada lagi User ID */}
         </div>
       </nav>
 
