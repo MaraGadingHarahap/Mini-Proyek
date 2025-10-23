@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// --- TIDAK ADA IMPOR FIREBASE ---
-// Kita akan menggunakan localStorage yang sudah ada di browser
-
-// --- Komponen untuk CSS Biasa ---
 function GlobalStyles() {
   return (
     <style>{`
